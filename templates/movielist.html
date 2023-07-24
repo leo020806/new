@@ -1,0 +1,233 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link href="/favicon.ico" rel="icon" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <meta content="#000000" name="theme-color" />
+    <meta content="Disney Plus Clone created by Christian Turner" name="Disney++" />
+    <link href="/favicon.ico" rel="apple-touch-icon" />
+    <link href="/manifest.json" rel="manifest" />
+    <title>Disney++</title>
+    <link href="/css/mlist1.css" rel="stylesheet" />
+    <link href="/css/mlist2.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+
+<body>
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<div id="root">
+    <div class="App">
+        <div>
+            <nav class="nav" id="nav">
+                <a class="logo" href="/">
+                    <img alt="logo" class="logoImg" src="./img/logo.png" />
+                </a>
+                <ul class="menu">
+                    <li>
+                        <svg fill="currentColor" height="1em" stroke="currentColor" stroke-width="0" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z">
+                            </path>
+                        </svg>
+<!--                        <i class="fas fa-home"></i>-->
+                        <a th:href="@{/home}">
+                            <span>Home</span></a>
+                    </li>
+                    <li>
+                        <svg fill="currentColor" height="1em" stroke="currentColor" stroke-width="0" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                            </path>
+                        </svg>
+                        <a th:href="@{/search}">
+                            <span>Search</span>
+                        </a>
+                    </li>
+                    <li>
+                        <svg fill="currentColor" height="1em" stroke="currentColor" stroke-width="0" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9h-4v4h-2v-4H9V9h4V5h2v4h4v2z">
+                            </path>
+                        </svg>
+                        <a th:href="@{/movielist}">
+                            <span>Watchlist</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <svg fill="currentColor" height="1em" stroke="currentColor" stroke-width="0" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z">
+                            </path>
+                        </svg>
+                        <a th:href="@{/movie}">
+                            <span>Movies</span>
+                        </a>
+                    </li>
+
+                </ul>
+                <a class="login" href="/login">
+                    <p>Log In</p>
+                    <svg fill="currentColor" height="1em" stroke="currentColor" stroke-width="0" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z">
+                        </path>
+                    </svg>
+                </a>
+            </nav>
+
+            <div class="wrapper" >
+                <div class="watchlistWrapper" th:if="${#lists.isEmpty(reurl)}">
+                    <svg fill="currentColor" height="1em" stroke="currentColor" stroke-width="0" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z">
+                        </path>
+                    </svg>
+                    <h3>Your watchlist is empty</h3>
+                    <p>Content you add to your watchlist will appear here.</p>
+                </div>
+                <div class="colection-carousel" th:if="${not #lists.isEmpty(reurl)}">
+                    <div class="movies-colections" th:each="reurl:${reurl}">
+                        <a th:href="@{/details(id=${reurl.movieid})}" target="_blank"><img th:src="${reurl.murl}" alt="加载错误"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <a class="footerLogo" href="/">
+                <img alt="logo" src="./img/logo-nopad.svg" />
+            </a>
+            <ul class="footerList">
+                <li class="footerItem">
+                    <a href="https://www.disneyplus.com/legal/privacy-policy">Privacy Policy</a>
+                </li>
+                <li class="footerItem">
+                    <a href="https://www.disneyplus.com/legal/subscriber-agreement">Subscriber Agreement</a>
+                </li>
+                <li class="footerItem">
+                    <a href="https://www.disneyplus.com/legal/your-california-privacy-rights">Your California Privacy Rights</a>
+                </li>
+                <li class="footerItem">
+                    <a href="https://www.disneyplus.com/legal/do-not-sell-my-info">Do Not Sell My Info</a>
+                </li>
+                <li class="footerItem">
+                    <a href="https://privacy.thewaltdisneycompany.com/en/for-parents/childrens-online-privacy-policy/">Children's Online Privacy Policy</a>
+                </li>
+                <li class="footerItem">
+                    <a href="https://help.disneyplus.com/csp">Help</a>
+                </li>
+                <li class="footerItem">
+                    <a href="https://help.disneyplus.com/csp?id=csp_article_content&amp;sys_kb_id=f0fb467ddbb04c503c0cf158bf961982">Closed Captioning</a>
+                </li>
+                <li class="footerItem">
+                    <a href="https://help.disneyplus.com/csp?id=csp_article_content&amp;sys_kb_id=f0fb467ddbb04c503c0cf158bf961982">Supported Devices</a>
+                </li>
+                <li class="footerItem">
+                    <a href="https://www.disneyplus.com/welcome/gift-subscription">Gift Disney+</a>
+                </li>
+                <li class="footerItem">
+                    <a href="https://help.disneyplus.com/csp?id=csp_article_content_international&amp;sys_kb_id=8d061aaadb7004903c0cf158bf9619ed">About Us</a>
+                </li>
+                <li class="footerItem">
+                    <a href="https://www.disneyplus.com/welcome/partner-program">Disney+ Partner Program</a>
+                </li>
+                <li class="footerItem">
+                    <a href="https://preferences-mgr.trustarc.com/?pid=disney01&amp;aid=disneyplus01&amp;type=disneyplus">Interest-based Ads</a>
+                </li>
+            </ul>
+            <p class="copyright"></p>
+        </div>
+    </div>
+</div>
+<script>!
+    function(e) {
+        function r(r) {
+            for (var n, l, i = r[0], p = r[1], f = r[2], c = 0, s = []; c < i.length; c++) l = i[c],
+            Object.prototype.hasOwnProperty.call(o, l) && o[l] && s.push(o[l][0]),
+                o[l] = 0;
+            for (n in p) Object.prototype.hasOwnProperty.call(p, n) && (e[n] = p[n]);
+            for (a && a(r); s.length;) s.shift()();
+            return u.push.apply(u, f || []),
+                t()
+        }
+        function t() {
+            for (var e, r = 0; r < u.length; r++) {
+                for (var t = u[r], n = !0, i = 1; i < t.length; i++) {
+                    var p = t[i];
+                    0 !== o[p] && (n = !1)
+                }
+                n && (u.splice(r--, 1), e = l(l.s = t[0]))
+            }
+            return e
+        }
+        var n = {},
+            o = {
+                1 : 0
+            },
+            u = [];
+        function l(r) {
+            if (n[r]) return n[r].exports;
+            var t = n[r] = {
+                i: r,
+                l: !1,
+                exports: {}
+            };
+            return e[r].call(t.exports, t, t.exports, l),
+                t.l = !0,
+                t.exports
+        }
+        l.m = e,
+            l.c = n,
+            l.d = function(e, r, t) {
+                l.o(e, r) || Object.defineProperty(e, r, {
+                    enumerable: !0,
+                    get: t
+                })
+            },
+            l.r = function(e) {
+                "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
+                    value: "Module"
+                }),
+                    Object.defineProperty(e, "__esModule", {
+                        value: !0
+                    })
+            },
+            l.t = function(e, r) {
+                if (1 & r && (e = l(e)), 8 & r) return e;
+                if (4 & r && "object" == typeof e && e && e.__esModule) return e;
+                var t = Object.create(null);
+                if (l.r(t), Object.defineProperty(t, "default", {
+                    enumerable: !0,
+                    value: e
+                }), 2 & r && "string" != typeof e) for (var n in e) l.d(t, n,
+                    function(r) {
+                        return e[r]
+                    }.bind(null, n));
+                return t
+            },
+            l.n = function(e) {
+                var r = e && e.__esModule ?
+                    function() {
+                        return e.
+                            default
+                    }:
+                    function() {
+                        return e
+                    };
+                return l.d(r, "a", r),
+                    r
+            },
+            l.o = function(e, r) {
+                return Object.prototype.hasOwnProperty.call(e, r)
+            },
+            l.p = "/";
+        var i = this.webpackJsonpdisneyplus = this.webpackJsonpdisneyplus || [],
+            p = i.push.bind(i);
+        i.push = r,
+            i = i.slice();
+        for (var f = 0; f < i.length; f++) r(i[f]);
+        var a = p;
+        t()
+    } ([])</script>
+<!--<script src="/js/js1.js">-->
+<!--</script>-->
+<!--<script src="/js/js2.js">-->
+<!--</script>-->
+</body>
+
+</html>

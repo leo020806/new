@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script th:src="@{https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js}"></script>
+<body>
+<!--<form action="#" class="sign-in-form" th:action="@{/searchcon}">-->
+<!--    <h2 class="title">search</h2>-->
+<!--    <div class="input-field">-->
+<!--        <i class="fas fa-user">-->
+<!--        </i>-->
+<!--        <input type="text" placeholder="用户名" name="moviename">-->
+<!--    </div>-->
+
+<!--    <input type="submit" value="Login" class="btn solid">-->
+
+<!--<img src="../img/1.jpg" alt="Smiley face" width="42" height="42">-->
+<!--    <img th:src="@{{msg}(msg=${msg})}" alt="Smiley face" width="42" height="42">-->
+<!--</form>-->
+
+    <button onclick="edit()">search</button>
+<input  id="1" class="12">
+<div  id="123" class="12">
+</div>
+<!--<button  id="nb" onclick="'javascript:edit();'">search</button>-->
+<script type="text/javascript">
+    function edit(){
+        var title = document.getElementById("1").value;
+        $.ajax({
+            url: '/searchlike',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json;charset=UTF-8',
+            data: title,
+            success: function (data) {
+                for (var i = 0; i < data.length-264; i++) {
+                    console.log(data[i]);
+                    $("#123").append("<img src='" + data[i].murl + "'>" + "</img>");
+                }
+            },
+            error: function () {
+                alert("错误");
+            }
+        })
+    };
+</script>
+</body>
+</html>

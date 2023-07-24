@@ -1,0 +1,224 @@
+<html lang="en" xmlns:th = "http//www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <link href="/favicon.ico" rel="icon" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <meta content="#000000" name="theme-color" />
+    <meta content="Disney Plus Clone created by Christian Turner" name="Disney++" />
+    <link href="/favicon.ico" rel="apple-touch-icon" />
+    <link href="/manifest.json" rel="manifest" />
+    <title>Disney++</title>
+    <link href="/css/mlist1.css" rel="stylesheet" />
+    <link href="/css/mlist2.css" rel="stylesheet" />
+</head>
+<script th:src="@{https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js}"></script>
+<body>
+
+<div id="root">
+    <div class="App">
+        <div>
+            <nav class="nav" id="nav">
+                <a class="logo" href="/">
+                    <img alt="logo" class="logoImg" src="./img/logo-nopad.svg" />
+                </a>
+                <ul class="menu">
+                    <li>
+                        <svg fill="currentColor" height="1em" stroke="currentColor" stroke-width="0" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z">
+                            </path>
+                        </svg>
+                        <a th:href="@{/home}">
+                            <span>主页</span>
+                        </a>
+                    </li>
+                    <li>
+                        <svg fill="currentColor" height="1em" stroke="currentColor" stroke-width="0" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                            </path>
+                        </svg>
+                        <a th:href="@{/search}">
+                            <span>Search</span>
+                        </a>
+                    </li>
+                    <li>
+                        <svg fill="currentColor" height="1em" stroke="currentColor" stroke-width="0" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9h-4v4h-2v-4H9V9h4V5h2v4h4v2z">
+                            </path>
+                        </svg>
+                        <a th:href="@{/movielist}">
+                            <span>Watchlist</span>
+                        </a>
+                    </li>
+                    <li>
+                        <svg fill="currentColor" height="1em" stroke="currentColor" stroke-width="0" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z">
+                            </path>
+                        </svg>
+                        <a th:href="@{/movie}">
+                            <span>Movies</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="resultPage">
+                <div class="resultBackground">
+                    <img alt="Minions: The Rise of Gru" class="posterBackground" th:src="${murl}" />
+                    <div class="resultInfo">
+                        <h1 th:text="${moviename}">movie_name</h1>
+                        <h2 th:text="${star}">score</h2>
+                        <div class="overview">
+                            <h5 th:text="${text}">intro</h5>
+                        </div>
+                        <div class="actions">
+                            <button class="circleButton" onclick="addmovie()">
+                                <svg fill="currentColor" height="1em" stroke="currentColor" stroke-width="0" viewbox="0 0 448 512" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+                        <nav class="subNav">
+                            <div class="subNavSection active">
+                                <button>Suggested</button>
+                            </div>
+                        </nav>
+                        <div class="detailsWrapper">
+                            <div class="suggested">
+                                <div class="slick-slider slick-initialized" dir="ltr">
+                                    <div class="slick-list">
+                                        <div class="slick-track" style="width: 2520px; opacity: 1; transform: translate3d(0px, 0px, 0px);">
+                                            <div aria-hidden="false" class="slick-slide slick-active" data-index="1" style="outline: none; width: 126px;" tabindex="-1">
+                                                <div>
+                                                    <a href="/movie/616037" style="width: 100%; display: inline-block;" tabindex="-1">
+                                                        <div class="banner recBanner">
+                                                            <img alt="Thor: Love and Thunder" src="https://image.tmdb.org/t/p/original//pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg" />
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div aria-hidden="false" class="slick-slide slick-active" data-index="2" style="outline: none; width: 126px;" tabindex="-1">
+                                                <div>
+                                                    <a href="/movie/924482" style="width: 100%; display: inline-block;" tabindex="-1">
+                                                        <div class="banner recBanner">
+                                                            <img alt="The Ledge" src="https://image.tmdb.org/t/p/original//S99eCSnRFfeZJmDaIGIZF58H7w.jpg" />
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div aria-hidden="false" class="slick-slide slick-active" data-index="3" style="outline: none; width: 126px;" tabindex="-1">
+                                                <div>
+                                                    <a href="/movie/507086" style="width: 100%; display: inline-block;" tabindex="-1">
+                                                        <div class="banner recBanner">
+                                                            <img alt="Jurassic World Dominion" src="https://image.tmdb.org/t/p/original//kAVRgw7GgK1CfYEJq8ME6EvRIgU.jpg" />
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div aria-hidden="false" class="slick-slide slick-active" data-index="5" style="outline: none; width: 126px;" tabindex="-1">
+                                                <div>
+                                                    <a href="/movie/698128" style="width: 100%; display: inline-block;" tabindex="-1">
+                                                        <div class="banner recBanner">
+                                                            <img alt="Dual" src="https://image.tmdb.org/t/p/original//wDEse2TQRiyfhdlusSXBdkDOQRj.jpg" />
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div aria-hidden="true" class="slick-slide" data-index="6" style="outline: none; width: 126px;" tabindex="-1">
+                                                <div>
+                                                    <a href="/movie/755566" style="width: 100%; display: inline-block;" tabindex="-1">
+                                                        <div class="banner recBanner">
+                                                            <img alt="Day Shift" src="https://image.tmdb.org/t/p/original//bI7lGR5HuYlENlp11brKUAaPHuO.jpg" />
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div aria-hidden="true" class="slick-slide" data-index="7" style="outline: none; width: 126px;" tabindex="-1">
+                                                <div>
+                                                    <a href="/movie/361743" style="width: 100%; display: inline-block;" tabindex="-1">
+                                                        <div class="banner recBanner">
+                                                            <img alt="Top Gun: Maverick" src="https://image.tmdb.org/t/p/original//62HCnUTziyWcpDaBO2i1DX17ljH.jpg" />
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div aria-hidden="true" class="slick-slide" data-index="8" style="outline: none; width: 126px;" tabindex="-1">
+                                                <div>
+                                                    <a href="/movie/585511" style="width: 100%; display: inline-block;" tabindex="-1">
+                                                        <div class="banner recBanner">
+                                                            <img alt="Luck" src="https://image.tmdb.org/t/p/original//1HOYvwGFioUFL58UVvDRG6beEDm.jpg" />
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div aria-hidden="true" class="slick-slide" data-index="9" style="outline: none; width: 126px;" tabindex="-1">
+                                                <div>
+                                                    <a href="/movie/460555" style="width: 100%; display: inline-block;" tabindex="-1">
+                                                        <div class="banner recBanner">
+                                                            <img alt="Operation Red Sea" src="https://image.tmdb.org/t/p/original//6ctXBO0o5fKQvGdSJsPc8TAYCvp.jpg" />
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div aria-hidden="true" class="slick-slide" data-index="10" style="outline: none; width: 126px;" tabindex="-1">
+                                                <div>
+                                                    <a href="/movie/453395" style="width: 100%; display: inline-block;" tabindex="-1">
+                                                        <div class="banner recBanner">
+                                                            <img alt="Doctor Strange in the Multiverse of Madness" src="https://image.tmdb.org/t/p/original//9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg" />
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div aria-hidden="true" class="slick-slide" data-index="11" style="outline: none; width: 126px;" tabindex="-1">
+                                                <div>
+                                                    <a href="/movie/697071" style="width: 100%; display: inline-block;" tabindex="-1">
+                                                        <div class="banner recBanner">
+                                                            <img alt="How to Rob a Millionaire" src="https://image.tmdb.org/t/p/original//lD1jh0BdotkEMMmQzXofHspFCkl.jpg" />
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function addmovie(){
+        var mid = [[${id}]];
+        var uid = [[${userid}]];
+        var x = mid
+        // var mname = [[${moviename}]];
+        $.ajax({
+            url: '/movieadd',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify(x),
+            success: function (data) {
+                // var showimg="";
+                // for (var i = 0; i < data.length-264; i++) {
+                //     console.log(data[i].murl);
+                //     showimg += "                 <div class=\"movies-colections\" >\n" +
+                //         "                    <img src="+data[i].murl+" alt=\"star wars: the bad batch\">\n" +
+                //         "                </div>"
+                // }
+                // var test = document.getElementById("mlist");
+                // test.innerHTML = showimg;
+                alert("添加成功");
+            },
+            error: function () {
+                alert("错误");
+            }
+        })
+    };
+</script>
+</body>
+
+</html>

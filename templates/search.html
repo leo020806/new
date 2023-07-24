@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/icon-d-1.png" type="image/x-icon">
+    <!-- Slick para o carousel -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick-theme.css">
+
+    <link rel="stylesheet" href="/css/search.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;1,100;1,300&display=swap"
+        rel="stylesheet">
+
+    <title>Disney+ | Movies and Series</title>
+</head>
+<script th:src="@{https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js}"></script>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#"><img src="./img/logo.png" alt="Disney+" class="logo"></a>
+                    </li>
+                    <li>
+                        <i class="fas fa-home"></i>
+                        <a th:href="@{/home}" class="estilo">主页</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-search"></i>
+                        <a th:href="@{/search}" class="estilo">搜索</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-plus"></i>
+                        <a th:href="@{/movielist}" class="estilo">观看列表</a>
+                    </li>
+
+                    <li>
+                        <i class="fas fa-tape"></i>
+                        <a th:href="@{/movie}" class="estilo">电影</a>
+                    </li>
+                </ul>
+            </nav>
+            <img src="./img/perfil-disney.jpg" alt="login" class="login">
+        </div>
+    </header>
+    <div class="search">
+        <input type="text" id="1" placeholder="按片名、角色或类型搜索。">
+        <button onclick="edit()"></button>
+    </div>
+    <main>
+        <article class="colections-disney">
+            <h2>热门电影</h2>
+            <div class="colection-carousel" id="mlist">
+                <div class="movies-colections" >
+<!--                    <a href="/details?id=1" class="estilo"><img src="./img/movies/serie1.jpg" alt="star wars: the bad batch"></a>-->
+                    <img src="./img/movies/serie1.jpg" alt="star wars: the bad batch">
+                </div>
+                <div class="movies-colections">
+                    <img src="./img/movies/serie2.jpg" alt="star wars: the bad batch">
+                </div>
+                <div class="movies-colections">
+                    <img src="./img/movies/serie3.jpg" alt="star wars: the bad batch">
+                </div>
+                <div class="movies-colections">
+                    <img src="./img/movies/serie4.jpg" alt="star wars: the bad batch">
+                </div>
+                <div class="movies-colections">
+                    <img src="./img/movies/serie5.jpg" alt="star wars: the bad batch">
+                </div>
+                <div class="movies-colections">
+                    <img src="./img/movies/serie6.jpg" alt="star wars: the bad batch">
+                </div>
+                <div class="movies-colections">
+                    <img src="./img/movies/serie7.jpg" alt="star wars: the bad batch">
+                </div>
+                <div class="movies-colections">
+                    <img src="./img/movies/serie8.jpg" alt="star wars: the bad batch">
+                </div>
+                <div class="movies-colections">
+                    <img src="./img/movies/serie9.jpg" alt="star wars: the bad batch">
+                </div>
+                <div class="movies-colections">
+                    <img src="./img/movies/serie10.jpg" alt="star wars: the bad batch">
+                </div>
+                <div class="movies-colections">
+                    <img src="./img/movies/serie11.jpg" alt="star wars: the bad batch">
+                </div>
+                <div class="movies-colections">
+                    <img src="./img/movies/serie1.jpg" alt="star wars: the bad batch">
+                </div>
+                <div class="movies-colections">
+                    <img src="./img/movies/serie2.jpg" alt="star wars: the bad batch">
+                </div>
+                <div class="movies-colections">
+                    <img src="./img/movies/serie3.jpg" alt="star wars: the bad batch">
+                </div>
+                <div class="movies-colections">
+                    <img src="./img/movies/serie4.jpg" alt="star wars: the bad batch">
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/340b8b3293.js" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
+        <script type="text/javascript">
+            function edit(){
+                var title = document.getElementById("1").value;
+
+                $.ajax({
+                    url: '/searchlike',
+                    type: 'post',
+                    dataType: 'json',
+                    contentType: 'application/json;charset=UTF-8',
+                    data: title,
+                    success: function (data) {
+                        var showimg="";
+
+                        for (var i = 0; i < data.length-264; i++) {
+                            console.log(data[i].murl);
+                            // showimg += "                 <div class=\"movies-colections\" >\n" +
+                            //     "                    <img src="+data[i].murl+" alt=\"star wars: the bad batch\">\n" +
+                            //     "                </div>"
+                                showimg += "        <div class=\"movies-colections\" >\n" +
+                                    "               <a href=\"/details?id=" + data[i].movieid + "\" class=\"estilo\"><img src="+data[i].murl+" alt=\"star wars: the bad batch\"></a>\n" +
+                                    "                </div>"
+                        }
+                        var test = document.getElementById("mlist");
+                        test.innerHTML = showimg;
+                    },
+                    error: function () {
+                        alert("错误");
+                    }
+                })
+            };
+        </script>
+</body>
+</html>

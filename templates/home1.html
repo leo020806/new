@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/icon-d-1.png" type="image/x-icon">
+    <!-- Slick para o carousel -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick-theme.css">
+
+    <link rel="stylesheet" href="/css/style1.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;1,100;1,300&display=swap"
+        rel="stylesheet">
+
+    <title>Disney+ | Movies and Series</title>
+</head>
+
+<body>
+    <!-- Semantico!!!!!!!!!!!! -->
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#"><img src="./img/logo-nopad.svg" alt="Disney+" class="logo"></a>
+                    </li>
+                    <li>
+                        <i class="fas fa-home"></i>
+                        <a href="http://localhost:8080/home" class="estilo">Home</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-search"></i>
+<!--                        <a th:href="@{/searchcon}" class="estilo">Search</a>-->
+                        <a th:href="@{/search}" class="estilo">Search</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-plus"></i>
+                        <a href="#" class="estilo">Watchlist</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-star"></i>
+                        <a href="#" class="estilo">Originals</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-tape"></i>
+                        <a href="#" class="estilo">Movies</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-tv"></i>
+                        <a href="#" class="estilo">Series</a>
+                    </li>
+                </ul>
+            </nav>
+            <a href="http://localhost:8080/permessage" class="estilo"><img src="./img/perfil-disney.jpg" alt="login" class="login"></a>
+        </div>
+    </header>
+    <main>
+        <article class="main-carousel">
+            <div class="item item-1">
+                <div class="info-movie">
+                    <img src="./img/cruella__2021__live_action_logo_png__by_mintmovi3_deb3ncx-fullview.png"
+                        alt="Cruela logo">
+                    <h2>Já disponível com Premier Acces</h2>
+                </div>
+            </div>
+
+            <div class="item item-2">
+                <div class="info-movie">
+                    <img src="./img/the-little-princes-live-action-logo.png" alt="Cruela logo">
+                    <!-- <h2>Já disponível com Premier Acces</h2> -->
+                </div>
+            </div>
+
+            <!-- <div class="item item-3">
+                <div class="info-movie">
+                    <img src="./img/the-little-princes-live-action-logo.png" alt="Cruela logo">
+                    <h2>Já disponível com Premier Acces</h2>
+                </div>
+            </div> -->
+        </article>
+
+        <article class="canais">
+            <div class="canais-disney disney">
+                <img src="./img/disney.png" alt="Disney">
+            </div>
+            <div class="canais-disney pixar">
+                <img src="./img/pixar.png" alt="Pixar">
+            </div>
+            <div class="canais-disney marvel">
+                <img src="./img/marvel.png" alt="Marvel">
+            </div>
+            <div class="canais-disney star-wars">
+                <img src="./img/star-wars.png" alt="Star Wars">
+            </div>
+            <div class="canais-disney n-g">
+                <img src="./img/n-g.png" alt="National Geographic">
+            </div>
+        </article>
+
+        <article class="colections-disney">
+            <h2>为您推荐</h2>
+            <div class="colection-carousel">
+                <div class="movies-colections" th:each="removie:${removie}">
+                    <a th:href="@{/details(id=${removie.movieid})}" target="_blank"><img th:src="${removie.murl}" alt="star wars: the bad batch"></a>
+                </div>
+<!--                <div class="movies-colections">-->
+<!--                    <img src="./img/movies/serie2.jpg" alt="star wars: the bad batch">-->
+<!--                </div>-->
+<!--                <div class="movies-colections">-->
+<!--                    <img src="./img/movies/serie3.jpg" alt="star wars: the bad batch">-->
+<!--                </div>-->
+<!--                <div class="movies-colections">-->
+<!--                    <img src="./img/movies/serie4.jpg" alt="star wars: the bad batch">-->
+<!--                </div>-->
+<!--                <div class="movies-colections">-->
+<!--                    <img src="./img/movies/serie5.jpg" alt="star wars: the bad batch">-->
+<!--                </div>-->
+<!--                <div class="movies-colections">-->
+<!--                    <img src="./img/movies/serie6.jpg" alt="star wars: the bad batch">-->
+<!--                </div>-->
+<!--                <div class="movies-colections">-->
+<!--                    <img src="./img/movies/serie7.jpg" alt="star wars: the bad batch">-->
+<!--                </div>-->
+            </div>
+            <h2>欢乐喜剧人</h2>
+            <div class="colection-carousel">
+                <div class="movies-colections" th:each="comedy:${Comedy}">
+<!--                    <a th:href="@{/details(id=${removie.movieid})}" class="estilo">Search</a>-->
+<!--                    <img th:src="${removie.murl}" alt="star wars: the bad batch">-->
+                    <a th:href="@{/details(id=${comedy.movieid})}" target="_blank"><img th:src="${comedy.murl}" alt="star wars: the bad batch"></a>
+                </div>
+<!--                <div class="movies-colections">-->
+<!--                    <img src="./img/movies/serie2.jpg" alt="star wars: the bad batch">-->
+<!--                </div>-->
+<!--                <div class="movies-colections">-->
+<!--                    <img src="./img/movies/serie3.jpg" alt="star wars: the bad batch">-->
+<!--                </div>-->
+<!--                <div class="movies-colections">-->
+<!--                    <img src="./img/movies/serie4.jpg" alt="star wars: the bad batch">-->
+<!--                </div>-->
+<!--                <div class="movies-colections">-->
+<!--                    <img src="./img/movies/serie5.jpg" alt="star wars: the bad batch">-->
+<!--                </div>-->
+<!--                <div class="movies-colections">-->
+<!--                    <img src="./img/movies/serie6.jpg" alt="star wars: the bad batch">-->
+<!--                </div>-->
+<!--                <div class="movies-colections">-->
+<!--                    <img src="./img/movies/serie7.jpg" alt="star wars: the bad batch">-->
+<!--                </div>-->
+            </div>
+            <h2>欢乐喜剧人</h2>
+            <div class="colection-carousel">
+                <div class="movies-colections" th:each="action:${Action}">
+                    <a th:href="@{/details(id=${action.movieid})}" target="_blank"><img th:src="${action.murl}" alt="star wars: the bad batch"></a>
+                </div>
+            </div>
+
+            <h2>欢乐喜剧人</h2>
+            <div class="colection-carousel">
+                <div class="movies-colections" th:each="drama:${Drama}">
+                    <a th:href="@{/details(id=${drama.movieid})}" target="_blank"><img th:src="${drama.murl}" alt="star wars: the bad batch"></a>
+                </div>
+            </div>
+
+            <h2>欢乐喜剧人</h2>
+            <div class="colection-carousel">
+                <div class="movies-colections" th:each="thriller:${Thriller}">
+                    <a th:href="@{/details(id=${thriller.movieid})}" target="_blank"><img th:src="${thriller.murl}" alt="star wars: the bad batch"></a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        Disney+
+    </footer>
+
+    
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick.js"></script>
+    <script src="https://kit.fontawesome.com/340b8b3293.js" crossorigin="anonymous"></script>
+    <script src="/js/main.js"></script>
+
+</body>
+
+</html>
